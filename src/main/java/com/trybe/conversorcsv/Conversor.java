@@ -38,5 +38,22 @@ public class Conversor {
    *                     gravar os arquivos de saída.
    */
   public void converterPasta(File pastaDeEntradas, File pastaDeSaidas) throws IOException {
-    // TODO: Implementar.
+    if (!pastaDeSaidas.exists()) {
+      pastaDeSaidas.mkdir();
+    }
+    
+    File[] listaArqEntrada = pastaDeEntradas.listFiles();
+
+    for (File arquivoEntrada : listaArqEntrada) {
+      // Cria novo arquivo de saída
+      File arqSaida = new File(pastaDeSaidas + File.separator + arquivoEntrada.getName());
+
+      try (BufferedReader bufferedReader = new BufferedReader(new FileReader(arquivoEntrada));
+           BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(arqSaida))) {
+
+        formatarEescreverConteudoNoArquivoSaida(bufferedReader, bufferedWriter);
+      }
+    }
+  }
+  
 }
