@@ -1,9 +1,17 @@
 package com.trybe.conversorcsv;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
+/**Classe Conversor. */
 public class Conversor {
+  private static final String ARQUIVO_ENTRADA = "./entradas/";
+  private static final String ARQUIVO_SAIDA = "./saidas/";
+  private static final String SEPARADOR = ",";
 
   /**
    * Função utilizada apenas para validação da solução do desafio.
@@ -13,8 +21,8 @@ public class Conversor {
    *                     gravar os arquivos de saída.
    */
   public static void main(String[] args) throws IOException {
-    File pastaDeEntradas = new File("./entradas/");
-    File pastaDeSaidas = new File("./saidas/");
+    File pastaDeEntradas = new File(ARQUIVO_ENTRADA);
+    File pastaDeSaidas = new File(ARQUIVO_SAIDA);
     new Conversor().converterPasta(pastaDeEntradas, pastaDeSaidas);
   }
 
@@ -31,5 +39,4 @@ public class Conversor {
    */
   public void converterPasta(File pastaDeEntradas, File pastaDeSaidas) throws IOException {
     // TODO: Implementar.
-  }
 }
