@@ -56,4 +56,22 @@ public class Conversor {
     }
   }
   
+  private static void formatarEescreverConteudoNoArquivoSaida(
+       BufferedReader bufferedReader, BufferedWriter bufferedWriter)throws IOException {
+
+    // Lê o conteúdo da primeira linha
+    String dadosLinha = bufferedReader.readLine();
+    escreverCabecalho(bufferedWriter, dadosLinha); 
+  }
+
+  private static void escreverCabecalho(BufferedWriter bufferedWriter, String dadosLinha) 
+      throws IOException {
+    // Escreve conteudo do cabeçalho e cria uma nova linha
+    bufferedWriter.write(dadosLinha);
+    bufferedWriter.newLine();
+
+    // Força a escrita de todos os dados armazenados no buffer
+    bufferedWriter.flush();
+  }
+  
 }
