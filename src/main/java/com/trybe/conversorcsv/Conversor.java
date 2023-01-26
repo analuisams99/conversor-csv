@@ -61,7 +61,25 @@ public class Conversor {
 
     // Lê o conteúdo da primeira linha
     String dadosLinha = bufferedReader.readLine();
-    escreverCabecalho(bufferedWriter, dadosLinha); 
+    escreverCabecalho(bufferedWriter, dadosLinha);
+    
+    dadosLinha = bufferedReader.readLine();
+
+    while (dadosLinha != null) {
+      String[] dadosLinhaSeparados = dadosLinha.split(SEPARADOR);
+
+      String dataFormatada = formatarData(dadosLinhaSeparados[1]);
+      String cpfFormatado = formatarCpf(dadosLinhaSeparados[3]);
+
+      String dadosFormatados = dadosLinhaSeparados[0].toUpperCase() 
+          + "," + dataFormatada + "," + dadosLinhaSeparados[2] + "," + cpfFormatado;
+
+      bufferedWriter.write(dadosFormatados);
+      bufferedWriter.newLine();
+      bufferedWriter.flush();
+
+      dadosLinha = bufferedReader.readLine();
+    }
   }
 
   private static void escreverCabecalho(BufferedWriter bufferedWriter, String dadosLinha) 
@@ -74,4 +92,15 @@ public class Conversor {
     bufferedWriter.flush();
   }
   
+  private static String formatarData(String dataBr) {
+    String[] data = dataBr.split("/");
+    return String.format("%s-%s-%s", data[2], data[1], data[0]);
+  }
+  
+  private static String formatarCpf(String cpf) {
+    return cpf.substring(0, 3) + "." 
+        + cpf.substring(3, 6) + "." 
+        + cpf.substring(6, 9) + "-"
+        + cpf.substring(9, 11);
+  }  
 }
